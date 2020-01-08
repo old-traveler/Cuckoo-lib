@@ -22,9 +22,9 @@ object CuckooPermission {
   private var mPermissionApplicant: PermissionApplicant? = null
   private var mDefaultRefuseListener: OnPermissionRefuseListener? = null
 
-  public fun clearPermissionMap(){
+  public fun clearPermissionMap() {
     mPermissionMap.clear()
-    Log.d("CuckooPermission","clearPermissionMap")
+    Log.d("CuckooPermission", "clearPermissionMap")
   }
 
   @JvmStatic
@@ -85,7 +85,7 @@ object CuckooPermission {
   ) {
     var deal = false
     if (any is OnPermissionRefuseListener) {
-      deal = any.onPermissionRefuse(methodName, grant, refuse)
+      deal = any.onPermissionRefuse(lifecycleCallback.curActivity!!, methodName, grant, refuse)
     } else if (any is String) {
       val targetClass = Class.forName(any)
       try {
@@ -115,7 +115,12 @@ object CuckooPermission {
     }
     assert(mDefaultRefuseListener != null)
     if (!deal) {
-      mDefaultRefuseListener!!.onPermissionRefuse(methodName, grant, refuse)
+      mDefaultRefuseListener!!.onPermissionRefuse(
+        lifecycleCallback.curActivity!!,
+        methodName,
+        grant,
+        refuse
+      )
     }
   }
 
