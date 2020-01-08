@@ -154,6 +154,9 @@ object CuckooPermission {
       }
     }
     method ?: throw RuntimeException("not find $methodName method")
+    if (!method!!.isAccessible){
+      method!!.isAccessible = true
+    }
     try {
       if (paramList.isEmpty()) {
         method!!.invoke(if (any is String) null else any)
