@@ -1,6 +1,7 @@
 package com.hyc.cuckoo_lib
 
 import kotlin.annotation.AnnotationRetention.RUNTIME
+import kotlin.annotation.AnnotationRetention.BINARY
 import kotlin.annotation.AnnotationTarget.FUNCTION
 
 /**
@@ -8,7 +9,7 @@ import kotlin.annotation.AnnotationTarget.FUNCTION
  * @date: 2019-12-18 15:43
  * @desc:
  */
-@kotlin.annotation.Retention(RUNTIME)
+@kotlin.annotation.Retention(BINARY)
 @kotlin.annotation.Target(
   FUNCTION
 )
